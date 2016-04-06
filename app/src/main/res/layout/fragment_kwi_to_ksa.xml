@@ -25,19 +25,38 @@
             android:layout_gravity="center"
             android:background="@drawable/round_bg">
 
-            <TextView
-                android:id="@+id/timeTextView"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/imageView"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:gravity="center_horizontal"
-                android:padding="10dp"
-                android:text="Duration time 15 min or less"
-                android:textColor="@android:color/white"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+                android:layout_centerHorizontal="true"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/timeTextViewTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/imageView"
+                    android:gravity="center_horizontal"
+                    android:lines="1"
+                    android:text="15 min or less"
+                    android:textColor="@android:color/white"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/timeTextViewUpdatedTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/imageView"
+                    android:gravity="center_horizontal"
+                    android:lines="1"
+                    android:text="Since 4m"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:textSize="17dp" />
+            </LinearLayout>
+
 
             <ImageView
                 android:id="@+id/imageView"

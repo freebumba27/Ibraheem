@@ -8,10 +8,15 @@ import android.preference.PreferenceManager;
  * Created by anirban on 04/04/2016.
  */
 public class ReusableClass {
-    public static double startPointLat = 3.141667721099972;
-    public static double startPointLng = 101.61552473902702;
-    public static double stopPointLat = 3.146689292510596;
-    public static double stopPointLng = 101.6168712079525;
+    public static double homeLat = 3.141667721099972;
+    public static double homeLng = 101.61552473902702;
+    public static double officeLat = 3.146689292510596;
+    public static double officeLng = 101.6168712079525;
+
+//    public static double homeLat = 28.44186041379514;
+//    public static double homeLng = 48.49154680967331;
+//    public static double officeLat = 28.3986938105104;
+//    public static double officeLng = 48.526309579610825;
 
     //===================================================================================================================================
     //Preference variable

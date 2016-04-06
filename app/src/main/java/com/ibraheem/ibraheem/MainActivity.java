@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(myPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
-
         //========================================================================================
         // ++++++++++++++++++++++++++++++ Start Tracker service ++++++++++++++++++++++++++++++++++
         //========================================================================================

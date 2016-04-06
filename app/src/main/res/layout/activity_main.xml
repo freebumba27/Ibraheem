@@ -99,7 +99,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight=".5"
                 android:gravity="center"
-                android:text="KSA to KWT"
+                android:text="KSA to KWT (H to O)"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18dp"
                 android:textStyle="bold" />
@@ -115,7 +115,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight=".5"
                     android:gravity="center"
-                    android:text="KWT to KSA"
+                    android:text="KWT to KSA (O to H)"
                     android:textColor="@color/colorAccent"
                     android:textSize="18dp"
                     android:textStyle="bold" />
