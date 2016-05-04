@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.ibraheem.ibraheem.models.TravelTimeResponce;
 import com.ibraheem.ibraheem.utils.URLConstantClass;
 import com.ibraheem.ibraheem.widget.AdsRecyclerViewAdapter;
@@ -37,6 +39,8 @@ public class KwiToKsaFragment extends Fragment {
     TextView timeTextViewUpdatedTime;
 
     AdsRecyclerViewAdapter adsRecyclerViewAdapter;
+    @Bind(R.id.adView)
+    AdView adView;
 
     public KwiToKsaFragment() {
         // Required empty public constructor
@@ -49,6 +53,9 @@ public class KwiToKsaFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_kwi_to_ksa, container, false);
         ButterKnife.bind(this, view);
+
+        loadAds();
+
         try {
             Response<String> response = Ion.with(this)
                     .load("POST", URLConstantClass.getTimeUrl("BtoA"))
@@ -105,5 +112,10 @@ public class KwiToKsaFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+    }
+
+    private void loadAds() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
     }
 }

@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:background="@color/light_white"
     android:gravity="center_horizontal"
     android:orientation="vertical"
@@ -40,10 +41,10 @@
                     android:layout_above="@+id/imageView"
                     android:gravity="center_horizontal"
                     android:lines="1"
-                    android:text="15 min or less"
                     android:textColor="@android:color/white"
                     android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:text="15 min or less" />
 
                 <TextView
                     android:id="@+id/timeTextViewUpdatedTime"
@@ -52,9 +53,9 @@
                     android:layout_above="@+id/imageView"
                     android:gravity="center_horizontal"
                     android:lines="1"
-                    android:text="Since 4m"
                     android:textColor="@android:color/holo_red_dark"
-                    android:textSize="17dp" />
+                    android:textSize="17dp"
+                    tools:text="Since 4m" />
             </LinearLayout>
 
 
@@ -105,15 +106,15 @@
             android:layout_height="1dp"
             android:background="@color/line_bg" />
 
-        <TextView
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/heading_bg"
-            android:gravity="center"
-            android:paddingLeft="10dp"
-            android:text="GOOGLE ADVERTISEMENTS"
-            android:textColor="@color/heading_text_bg"
-            android:textSize="20dp" />
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/banner_ad_unit_id"/>
+
 
         <View
             android:layout_width="match_parent"

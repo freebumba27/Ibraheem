@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -105,15 +106,14 @@
             android:layout_height="1dp"
             android:background="@color/line_bg" />
 
-        <TextView
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/heading_bg"
-            android:gravity="center"
-            android:paddingLeft="10dp"
-            android:text="GOOGLE ADVERTISEMENTS"
-            android:textColor="@color/heading_text_bg"
-            android:textSize="20dp" />
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/banner_ad_unit_id" />
 
         <View
             android:layout_width="match_parent"

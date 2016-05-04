@@ -26,4 +26,12 @@ public class URLConstantClass {
                 .appendQueryParameter("direction", direction)
                 .toString();
     }
+
+    public static String getAds(String ads_for, String ads_type) {
+        return Uri.parse(BASE_URL).buildUpon()
+                .appendPath("get_ads.php")
+                .appendQueryParameter("ads_for", ads_for)
+                .appendQueryParameter("ads_type", ads_type)
+                .toString();
+    }
 }

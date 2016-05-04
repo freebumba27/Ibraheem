@@ -42,13 +42,14 @@ public class AdsRecyclerViewAdapter extends RecyclerView.Adapter<AdsRecyclerView
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         holder.textView.setText(adsList[position]);
         holder.textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, AdvertiseListActivity.class);
                 i.putExtra("place", place);
+                i.putExtra("ads_type", adsList[position]);
                 context.startActivity(i);
             }
         });

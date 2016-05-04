@@ -19,6 +19,7 @@
         app:titleTextColor="@android:color/white" />
 
     <ImageView
+        android:id="@+id/imageViewAds"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:src="@drawable/honda_newbranding" />
@@ -29,6 +30,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/textViewTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -37,6 +39,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/textViewDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -45,8 +48,11 @@
             android:textSize="15dp" />
 
         <TextView
+            android:id="@+id/textViewAdsLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:clickable="true"
             android:layout_margin="5dp"
             android:text="WebLink"
             android:textColor="@color/colorPrimary"
