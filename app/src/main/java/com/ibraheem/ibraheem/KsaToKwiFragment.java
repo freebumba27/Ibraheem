@@ -1,6 +1,7 @@
 package com.ibraheem.ibraheem;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
@@ -23,6 +25,7 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 /**
@@ -42,6 +45,8 @@ public class KsaToKwiFragment extends Fragment {
     TextView timeTextViewUpdatedTime;
     @Bind(R.id.adView)
     AdView adView;
+    @Bind(R.id.createAdButton)
+    Button createAdButton;
 
     public KsaToKwiFragment() {
         // Required empty public constructor
@@ -117,5 +122,11 @@ public class KsaToKwiFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+    }
+
+    @OnClick(R.id.createAdButton)
+    public void contactUs() {
+        Intent i = new Intent(getContext(), ContactUsActivity.class);
+        startActivity(i);
     }
 }

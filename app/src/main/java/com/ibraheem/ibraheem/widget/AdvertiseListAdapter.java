@@ -75,6 +75,7 @@ public class AdvertiseListAdapter extends RecyclerView.Adapter<AdvertiseListAdap
     }
 
     public void addAll(ArrayList<AdsDetails> myAdsList) {
+        adsList.clear();
         adsList = myAdsList;
         notifyDataSetChanged();
     }

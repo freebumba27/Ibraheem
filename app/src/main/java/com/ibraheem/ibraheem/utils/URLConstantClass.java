@@ -27,11 +27,12 @@ public class URLConstantClass {
                 .toString();
     }
 
-    public static String getAds(String ads_for, String ads_type) {
+    public static String getAds(String adsFor, String adsType, String searchType) {
         return Uri.parse(BASE_URL).buildUpon()
                 .appendPath("get_ads.php")
-                .appendQueryParameter("ads_for", ads_for)
-                .appendQueryParameter("ads_type", ads_type)
+                .appendQueryParameter("ads_for", adsFor)
+                .appendQueryParameter("ads_type", adsType)
+                .appendQueryParameter("search_type", searchType)
                 .toString();
     }
 }
