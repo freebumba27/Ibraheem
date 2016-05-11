@@ -15,15 +15,22 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AdvertiseListActivity" />
-        <activity android:name=".AdvertiseMentDetails" />
+        <activity
+            android:name=".AdvertiseListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AdvertiseMentDetails"
+            android:screenOrientation="portrait" />
 
         <receiver android:name=".MyMainReceiver" />
 
@@ -34,7 +41,9 @@
             android:value="@integer/google_play_services_version"
             tools:replace="android:value" />
 
-        <activity android:name=".ContactUsActivity"></activity>
+        <activity
+            android:name=".ContactUsActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

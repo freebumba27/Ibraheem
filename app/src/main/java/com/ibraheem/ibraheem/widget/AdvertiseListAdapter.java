@@ -80,6 +80,11 @@ public class AdvertiseListAdapter extends RecyclerView.Adapter<AdvertiseListAdap
         notifyDataSetChanged();
     }
 
+    public void clearAll() {
+        adsList.clear();
+        notifyDataSetChanged();
+    }
+
     public class MyHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.title)
         TextView title;

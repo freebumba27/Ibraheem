@@ -12,6 +12,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.ibraheem.ibraheem.utils.ReusableClass;
 import com.ibraheem.ibraheem.widget.MyPagerAdapter;
 
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     ViewPager viewPager;
 
     MyPagerAdapter myPagerAdapter;
+    @Bind(R.id.adView)
+    AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +46,7 @@ public class MainActivity extends AppCompatActivity {
         myPagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(myPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
         if (!SmartLocation.with(this).location().state().isGpsAvailable()) {
             // notify user
             AlertDialog.Builder dialog = new AlertDialog.Builder(this);
@@ -61,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
             dialog.setNegativeButton(MainActivity.this.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-                    Toast.makeText(MainActivity.this, "You need to give the location permission.", Toast.LENGTH_SHORT).show();
-                    finish();
+                    Toast.makeText(MainActivity.this, "You need to give the location permission to enjoy the app full features.", Toast.LENGTH_SHORT).show();
+                    //finish();
                 }
             });
             dialog.show();
@@ -82,5 +82,12 @@ public class MainActivity extends AppCompatActivity {
             // ++++++++++++++++++++++++++++++ Start Tracker service ++++++++++++++++++++++++++++++++++
             //========================================================================================
         }
+
+        loadAds();
+    }
+
+    private void loadAds() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
     }
 }

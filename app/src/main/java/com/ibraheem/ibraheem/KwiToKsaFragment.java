@@ -1,7 +1,6 @@
 package com.ibraheem.ibraheem;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,23 +8,21 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.ibraheem.ibraheem.models.TravelTimeResponce;
 import com.ibraheem.ibraheem.utils.URLConstantClass;
 import com.ibraheem.ibraheem.widget.AdsRecyclerViewAdapter;
 import com.koushikdutta.ion.Ion;
 import com.koushikdutta.ion.Response;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 
 /**
@@ -42,10 +39,6 @@ public class KwiToKsaFragment extends Fragment {
     TextView timeTextViewUpdatedTime;
 
     AdsRecyclerViewAdapter adsRecyclerViewAdapter;
-    @Bind(R.id.adView)
-    AdView adView;
-    @Bind(R.id.createAdButton)
-    Button createAdButton;
 
     public KwiToKsaFragment() {
         // Required empty public constructor
@@ -58,8 +51,6 @@ public class KwiToKsaFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_kwi_to_ksa, container, false);
         ButterKnife.bind(this, view);
-
-        loadAds();
 
         try {
             Response<String> response = Ion.with(this)
@@ -85,22 +76,31 @@ public class KwiToKsaFragment extends Fragment {
                     timeTextViewTime.setText(seconds + " sec or less");
                 } else
                     timeTextViewTime.setText(minutes + " min or less");
-            } else
-                timeTextViewTime.setText(hours + ":" + minutes + " hours or less");
-
+            } else {
+                timeTextViewTime.setText(new SimpleDateFormat("hh:mm").format(new Date(miliSec)) + " hours or less");
+                timeTextViewTime.setTextSize(15);
+            }
             long timeDiff = (System.currentTimeMillis() - since);
 
+            long daySince = TimeUnit.MILLISECONDS.toDays(timeDiff);
             long hoursSince = TimeUnit.MILLISECONDS.toHours(timeDiff);
             long minutesSince = TimeUnit.MILLISECONDS.toMinutes(timeDiff);
             long secondsSince = TimeUnit.MILLISECONDS.toSeconds(timeDiff);
 
             if (hoursSince == 0) {
                 if (minutesSince == 0) {
-                    timeTextViewUpdatedTime.setText("Since " + secondsSince + " sec");
+                    timeTextViewUpdatedTime.setText("Since " + String.format("%01d", secondsSince) + " sec");
                 } else
-                    timeTextViewUpdatedTime.setText("Since " + minutesSince + " min");
-            } else
-                timeTextViewUpdatedTime.setText("Since " + hoursSince + ":" + minutesSince + " hours");
+                    timeTextViewUpdatedTime.setText("Since " + String.format("%01d", minutesSince) + " min");
+            } else {
+                if (hoursSince > 24) {
+                    timeTextViewUpdatedTime.setText("Since " + String.format("%01d", daySince) + " days");
+                    timeTextViewUpdatedTime.setTextSize(15);
+                } else {
+                    timeTextViewUpdatedTime.setText("Since " + hoursSince + ":" + String.format("%01d", (minutesSince - hoursSince * 60)) + " hours");
+                    timeTextViewUpdatedTime.setTextSize(15);
+                }
+            }
         } catch (Throwable e) {
             e.printStackTrace();
         }
@@ -117,16 +117,5 @@ public class KwiToKsaFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
-    }
-
-    private void loadAds() {
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
-    }
-
-    @OnClick(R.id.createAdButton)
-    public void contactUs() {
-        Intent i = new Intent(getContext(), ContactUsActivity.class);
-        startActivity(i);
     }
 }

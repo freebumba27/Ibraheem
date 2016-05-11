@@ -1,5 +1,6 @@
 package com.ibraheem.ibraheem;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -14,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -28,6 +30,7 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class AdvertiseListActivity extends AppCompatActivity {
 
@@ -42,6 +45,9 @@ public class AdvertiseListActivity extends AppCompatActivity {
     ProgressBar progress;
     @Bind(R.id.noData)
     TextView noData;
+    @Bind(R.id.createAdButton)
+    Button createAdButton;
+
     private String place;
     private String adsType;
 
@@ -121,8 +127,6 @@ public class AdvertiseListActivity extends AppCompatActivity {
                         advertiseListAdapter.addAll(adsList);
                     } else
                         noData.setVisibility(View.VISIBLE);
-
-                    advertiseListAdapter.addAll(adsList);
                 } else
                     progress.setVisibility(View.INVISIBLE);
             } catch (Throwable throwable) {
@@ -140,12 +144,15 @@ public class AdvertiseListActivity extends AppCompatActivity {
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
 
         SearchView.SearchAutoComplete searchAutoComplete = (SearchView.SearchAutoComplete) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
-        //searchAutoComplete.setHintTextColor(ContextCompat.getColor(this, R.color.text_hint_color));
+        searchAutoComplete.setHintTextColor(ContextCompat.getColor(this, R.color.text_hint_color));
         searchAutoComplete.setHint("Search...");
         searchAutoComplete.setTextColor(Color.WHITE);
 
+        ImageView searchMagIcon = (ImageView) searchView.findViewById(android.support.v7.appcompat.R.id.search_button);
+        searchMagIcon.setImageResource(R.drawable.search_icon);
+
         ImageView searchCloseIcon = (ImageView) searchView.findViewById(android.support.v7.appcompat.R.id.search_close_btn);
-        //searchCloseIcon.setImageResource(R.drawable.close_icon);
+        searchCloseIcon.setImageResource(R.drawable.white_close_icon);
 
         MenuItemCompat.collapseActionView(searchItem);
         if (searchView != null) {
@@ -170,10 +177,10 @@ public class AdvertiseListActivity extends AppCompatActivity {
                                 if (adsList.size() > 0) {
                                     noData.setVisibility(View.INVISIBLE);
                                     advertiseListAdapter.addAll(adsList);
-                                } else
+                                } else {
+                                    advertiseListAdapter.clearAll();
                                     noData.setVisibility(View.VISIBLE);
-
-                                advertiseListAdapter.addAll(adsList);
+                                }
                             } else
                                 progress.setVisibility(View.INVISIBLE);
                         } catch (Throwable throwable) {
@@ -200,8 +207,6 @@ public class AdvertiseListActivity extends AppCompatActivity {
                                     advertiseListAdapter.addAll(adsList);
                                 } else
                                     noData.setVisibility(View.VISIBLE);
-
-                                advertiseListAdapter.addAll(adsList);
                             } else
                                 progress.setVisibility(View.INVISIBLE);
                         } catch (Throwable throwable) {
@@ -221,4 +226,9 @@ public class AdvertiseListActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @OnClick(R.id.createAdButton)
+    public void contactUs() {
+        Intent i = new Intent(this, ContactUsActivity.class);
+        startActivity(i);
+    }
 }
